@@ -9,7 +9,8 @@ services:
 
   # php-fpm
   app:
-    build:
-      dockerfile: ./php/Dockerfile
+    # build:
+    #   dockerfile: ./php/Dockerfile
+    image: php:8.2-fpm-alpine
     volumes:
       - ./app:/app
