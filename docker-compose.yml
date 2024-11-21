@@ -1,0 +1,10 @@
+services:
+  # nginx
+  web:
+    image: nginx:alpine
+    ports:
+      - "8000:80"
+
+  app:
+    build:
+      dockerfile: .
