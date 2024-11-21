@@ -5,6 +5,7 @@ services:
     ports:
       - "8000:80"
 
+  # php-fpm
   app:
     build:
-      dockerfile: .
+      dockerfile: ./php/Dockerfile
