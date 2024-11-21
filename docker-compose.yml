@@ -2,6 +2,7 @@ services:
   # nginx
   web:
     image: nginx:alpine
+    container_name: parser-app
     ports:
       - "8000:80"
     volumes:
@@ -9,8 +10,7 @@ services:
 
   # php-fpm
   app:
-    # build:
-    #   dockerfile: ./php/Dockerfile
+    container_name: parser-web
     image: php:8.2-fpm-alpine
     volumes:
       - ./app:/app
