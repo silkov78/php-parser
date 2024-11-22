@@ -1,26 +1,38 @@
 <?php
 
-$transactions = [];
-$transactionsIndex = 0;
+function getCsvPathes(string $sourceDir): array {
+  $resultArray = [];
+  $sourceList = scandir($sourceDir);
 
-// $transactionsDirlist = scandir('../transactions');
-$csvFiles = array_filter(
-  $array = scandir('../transactions'),
-  $callback = fn($el) => str_ends_with($el, '.csv')
-);
+  foreach ($sourceList as $file) {
+    if (str_ends_with($file, '.csv')) {
+      array_push($resultArray, $sourceDir . '/' . $file);
+    }
+  }
 
-// $openExample = fopen('../transactions/sample1.csv', 'r');
-//
-// while(($line = fgetcsv($openExample)) !== false){
-//   $transactions[$transactionsIndex] = $line;
-//   $transactionsIndex++;
+  return $resultArray;
+}
+
+function getTransactionsFromFile(string $filePath): array {
+  $file = fopen($filePath, 'r');
+  $resultArray = [];
+
+  while(($line = fgetcsv($file)) !== false) {
+    array_push($resultArray, $line);
+  }
+
+  fclose($filePath);
+  return resultArray;
+}
+
+// Execution
+
+define("TRANSACTIONS_PATH", "../transactions");
+$csvTransactionsFiles = getCsvPathes(TRANSACTIONS_PATH);
+
+// $transactionsArray = [];
+// foreach($csvTransactionsFiles as $file){
+//   $tempTransactionAray = getTransactionsFromFile();
 // }
-//
-// fclose($openExample);
-//
-// echo '<pre>';
-// print_r($transactions);
-// echo '</pre>';
 
-
-print_r($csvFiles);
+print_r($csvTransactionsFiles);
