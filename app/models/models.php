@@ -3,15 +3,24 @@
 $transactions = [];
 $transactionsIndex = 0;
 
-$openExample = fopen('../transactions/sample1.csv', 'r');
+// $transactionsDirlist = scandir('../transactions');
+$csvFiles = array_filter(
+  $array = scandir('../transactions'),
+  $callback = fn($el) => str_ends_with($el, '.csv')
+);
 
-while(($line = fgetcsv($openExample)) !== false){
-  $transactions[$transactionsIndex] = $line;
-  $transactionsIndex++;
-}
+// $openExample = fopen('../transactions/sample1.csv', 'r');
+//
+// while(($line = fgetcsv($openExample)) !== false){
+//   $transactions[$transactionsIndex] = $line;
+//   $transactionsIndex++;
+// }
+//
+// fclose($openExample);
+//
+// echo '<pre>';
+// print_r($transactions);
+// echo '</pre>';
 
-fclose($openExample);
 
-echo '<pre>';
-print_r($transactions);
-echo '</pre>';
+print_r($csvFiles);
