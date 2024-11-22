@@ -18,11 +18,22 @@ function getTransactionsFromFile(string $filePath): array {
   $resultArray = [];
 
   while(($line = fgetcsv($file)) !== false) {
-    array_push($resultArray, $line);
+    $namedTransaction = [
+      'Date' => $line[0],
+      'Check #' => $line[1],
+      'Description' => $line[2],
+      'Amount' => $line[3],
+    ];
+
+    if ($namedTransaction['Date'] === 'Date'){
+      continue;
+    }
+
+    array_push($resultArray, $namedTransaction);
   }
 
-  fclose($filePath);
-  return resultArray;
+  fclose($file);
+  return $resultArray;
 }
 
 // Execution
@@ -30,9 +41,12 @@ function getTransactionsFromFile(string $filePath): array {
 define("TRANSACTIONS_PATH", "../transactions");
 $csvTransactionsFiles = getCsvPathes(TRANSACTIONS_PATH);
 
-// $transactionsArray = [];
-// foreach($csvTransactionsFiles as $file){
-//   $tempTransactionAray = getTransactionsFromFile();
-// }
+$transactionsArray = [];
+foreach ($csvTransactionsFiles as $filePath) {
+  $tempArray = getTransactionsFromFile($filePath);
+  $transactionsArray = array_merge($transactionsArray, $tempArray);
+}
 
-print_r($csvTransactionsFiles);
+echo '<pre>';
+print_r($transactionsArray);
+echo '</pre>';
