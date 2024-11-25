@@ -1,4 +1,12 @@
-<!DOCTYPE html>
+<?php
+
+require_once '../models/models.php';
+
+// print_r($transactionsArray);
+
+
+?>
+
 <html>
     <head>
         <title>Transactions</title>
@@ -34,20 +42,35 @@
                 </tr>
             </thead>
             <tbody>
-                <!-- YOUR CODE -->
+	    <?php
+	    foreach($transactionsArray as $item){
+		echo '<tr>';    
+	    	echo "<td>{$item['Date']}</td>";
+	    	echo "<td>{$item['Check #']}</td>";
+	    	echo "<td>{$item['Description']}</td>";
+	    	echo "<td>{$item['Amount']}</td>";
+		echo '</tr>';    
+	    }
+	    ?> 
             </tbody>
             <tfoot>
                 <tr>
                     <th colspan="3">Total Income:</th>
-                    <td><!-- YOUR CODE --></td>
+		    <td>
+			<?php echo $transactionsIncome?>
+		    </td>
                 </tr>
                 <tr>
                     <th colspan="3">Total Expense:</th>
-                    <td><!-- YOUR CODE --></td>
+		    <td>
+			<?php echo $transactionsExpense?>
+		   </td>
                 </tr>
                 <tr>
                     <th colspan="3">Net Total:</th>
-                    <td><!-- YOUR CODE --></td>
+		    <td>
+			<?php echo $transactionsExpense + $transactionsIncome?>
+		   </td>
                 </tr>
             </tfoot>
         </table>
