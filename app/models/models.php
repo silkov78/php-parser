@@ -15,21 +15,11 @@ function getCsvPathes(string $sourceDir): array {
 
 function getTransactionsFromFile(string $filePath): array {
   $file = fopen($filePath, 'r');
+  $headers = fgetcsv($file);
+ 
   $resultArray = [];
-
-  while(($line = fgetcsv($file)) !== false) {
-    $namedTransaction = [
-      'Date' => $line[0],
-      'Check #' => $line[1],
-      'Description' => $line[2],
-      'Amount' => $line[3],
-    ];
-
-    if ($namedTransaction['Date'] === 'Date'){
-      continue;
-    }
-
-    array_push($resultArray, $namedTransaction);
+  while(($row = fgetcsv($file)) !== false) {
+      $resultArray[] = array_combine(keys: $headers, values: $row);
   }
 
   fclose($file);
