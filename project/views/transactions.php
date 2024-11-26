@@ -22,7 +22,7 @@
             }
         </style>
     </head>
-    <body>endforeach
+    <body>
         <table>
             <thead>
                 <tr>
