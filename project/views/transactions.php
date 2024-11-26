@@ -47,21 +47,15 @@
             <tfoot>
                 <tr>
                     <th colspan="3">Total Income:</th>
-		    <td>
-			<?php echo $transactionsIncome?>
-		    </td>
+                    <td><?= $totals['totalIncome'] ?></td>
                 </tr>
                 <tr>
                     <th colspan="3">Total Expense:</th>
-		    <td>
-			<?php echo $transactionsExpense?>
-		   </td>
+                    <td><?= $totals['totalExpense'] ?></td>
                 </tr>
                 <tr>
                     <th colspan="3">Net Total:</th>
-		    <td>
-			<?php echo $transactionsExpense + $transactionsIncome?>
-		   </td>
+                    <td><?= $totals['netTotal'] ?></td>
                 </tr>
             </tfoot>
         </table>
