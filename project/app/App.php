@@ -37,7 +37,7 @@ function getTransactions(string $filePath, ?callable $transactionsHandler = null
       $transaction = $transactionsHandler($transaction);
     }
 
-    $transactions[] = parseTransaction($transaction);
+    $transactions[] = $transaction;
 
   }
 
