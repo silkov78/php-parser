@@ -11,4 +11,6 @@ define('VIEWS_PATH', $root . 'views' . DIRECTORY_SEPARATOR);
 // Execution
 require APP_PATH . 'App.php';
 
-var_dump(getTransactionFiles());
+$files = getTransactionFiles(dirPath:FILES_PATH);
+
+var_dump($files);
