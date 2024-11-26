@@ -29,6 +29,8 @@ function getTransactions(string $filePath): array {
 
   $transactions = [];
 
+  fgetcsv($file);
+
   while (($row = fgetcsv($file)) !== false) {
     $transactions[] = $row;
   }

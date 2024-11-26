@@ -1,12 +1,3 @@
-<?php
-
-require_once '../models/models.php';
-
-// print_r($transactionsArray);
-
-
-?>
-
 <html>
     <head>
         <title>Transactions</title>
@@ -31,7 +22,7 @@ require_once '../models/models.php';
             }
         </style>
     </head>
-    <body>
+    <body>endforeach
         <table>
             <thead>
                 <tr>
@@ -42,16 +33,16 @@ require_once '../models/models.php';
                 </tr>
             </thead>
             <tbody>
-	    <?php
-	    foreach($transactionsArray as $item){
-		echo '<tr>';    
-	    	echo "<td>{$item['Date']}</td>";
-	    	echo "<td>{$item['Check #']}</td>";
-	    	echo "<td>{$item['Description']}</td>";
-	    	echo "<td>{$item['Amount']}</td>";
-		echo '</tr>';    
-	    }
-	    ?> 
+                <?php if (! empty($transactions)): ?>
+                    <?php foreach($transactions as $transaction): ?>
+                        <tr>
+                            <td><?= $transaction[0] ?></td>
+                            <td><?= $transaction[1] ?></td>
+                            <td><?= $transaction[2] ?></td>
+                            <td><?= $transaction[3] ?></td>
+                        </tr>
+                    <?php endforeach ?>
+                <?php endif ?>
             </tbody>
             <tfoot>
                 <tr>
